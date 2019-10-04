@@ -2,9 +2,8 @@
   "name": "barchart",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jnforja.github.io/BarchartD3React",
+  "homepage": "https://jnforja.github.io/GapminderClone",
   "dependencies": {
-    "bootstrap": "^4.3.1",
     "d3": "^5.12.0",
     "react": "^16.10.0",
     "react-bootstrap": "^1.0.0-beta.12",

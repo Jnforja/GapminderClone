@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/GapminderClone/static/css/main.34de6062.chunk.css",
+    "main.js": "/GapminderClone/static/js/main.9cbd14e3.chunk.js",
+    "main.js.map": "/GapminderClone/static/js/main.9cbd14e3.chunk.js.map",
+    "runtime-main.js": "/GapminderClone/static/js/runtime-main.6d6a7c5c.js",
+    "runtime-main.js.map": "/GapminderClone/static/js/runtime-main.6d6a7c5c.js.map",
+    "static/js/2.2572640c.chunk.js": "/GapminderClone/static/js/2.2572640c.chunk.js",
+    "static/js/2.2572640c.chunk.js.map": "/GapminderClone/static/js/2.2572640c.chunk.js.map",
+    "index.html": "/GapminderClone/index.html",
+    "precache-manifest.9fcc6486221fb5903c88462e6922194f.js": "/GapminderClone/precache-manifest.9fcc6486221fb5903c88462e6922194f.js",
+    "service-worker.js": "/GapminderClone/service-worker.js",
+    "static/css/main.34de6062.chunk.css.map": "/GapminderClone/static/css/main.34de6062.chunk.css.map"
+  }
+}

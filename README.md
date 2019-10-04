@@ -1,3 +1,5 @@
-# BarchartD3React
+# GapminderClone
 
-Example of a Barchart using D3 and React
+Clone of Gapminder bubble chart (https://www.gapminder.org/tools/#$state$time$value=2018;;&amp;chart-type=bubbles) using React and D3.
+
+Demo: https://jnforja.github.io/GapminderClone

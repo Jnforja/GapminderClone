@@ -76,6 +76,32 @@ export default class D3ScatterPlot {
       .text(`Life Expectancy (Years)`)
       .attr('transform', 'rotate(-90)');
 
+    const continents = ['europe', 'asia', 'americas', 'africa'];
+
+    const legend = svg
+      .append('g')
+      .attr('transform', `translate(${width - 10}, ${height - 125})`);
+
+    continents.forEach((c, i) => {
+      const row = legend
+        .append('g')
+        .attr('transform', `translate(0, ${i * 20})`);
+
+      row
+        .append('rect')
+        .attr('width', 10)
+        .attr('height', 10)
+        .attr('fill', color(c));
+
+      row
+        .append('text')
+        .attr('x', -10)
+        .attr('y', 10)
+        .attr('text-anchor', 'end')
+        .style('text-transform', 'capitalize')
+        .text(c);
+    });
+
     let time = 0;
     d3.interval(() => {
       time = time < 214 ? time + 1 : 0;

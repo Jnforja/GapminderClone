@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/GapminderClone/static/css/main.34de6062.chunk.css",
-    "main.js": "/GapminderClone/static/js/main.71af4372.chunk.js",
-    "main.js.map": "/GapminderClone/static/js/main.71af4372.chunk.js.map",
+    "main.css": "/GapminderClone/static/css/main.3675a71b.chunk.css",
+    "main.js": "/GapminderClone/static/js/main.58058533.chunk.js",
+    "main.js.map": "/GapminderClone/static/js/main.58058533.chunk.js.map",
     "runtime-main.js": "/GapminderClone/static/js/runtime-main.6d6a7c5c.js",
     "runtime-main.js.map": "/GapminderClone/static/js/runtime-main.6d6a7c5c.js.map",
-    "static/js/2.2572640c.chunk.js": "/GapminderClone/static/js/2.2572640c.chunk.js",
-    "static/js/2.2572640c.chunk.js.map": "/GapminderClone/static/js/2.2572640c.chunk.js.map",
+    "static/css/2.e6bb547f.chunk.css": "/GapminderClone/static/css/2.e6bb547f.chunk.css",
+    "static/js/2.a7774c7e.chunk.js": "/GapminderClone/static/js/2.a7774c7e.chunk.js",
+    "static/js/2.a7774c7e.chunk.js.map": "/GapminderClone/static/js/2.a7774c7e.chunk.js.map",
     "index.html": "/GapminderClone/index.html",
-    "precache-manifest.8c99c991ed000b63efe388f8206041d4.js": "/GapminderClone/precache-manifest.8c99c991ed000b63efe388f8206041d4.js",
+    "precache-manifest.5fd37a9b096e4985de73790d8eadeab6.js": "/GapminderClone/precache-manifest.5fd37a9b096e4985de73790d8eadeab6.js",
     "service-worker.js": "/GapminderClone/service-worker.js",
-    "static/css/main.34de6062.chunk.css.map": "/GapminderClone/static/css/main.34de6062.chunk.css.map"
+    "static/css/2.e6bb547f.chunk.css.map": "/GapminderClone/static/css/2.e6bb547f.chunk.css.map",
+    "static/css/main.3675a71b.chunk.css.map": "/GapminderClone/static/css/main.3675a71b.chunk.css.map",
+    "static/media/semantic.min.css": "/GapminderClone/static/media/outline-icons.ef60a4f6.woff"
   }
 }

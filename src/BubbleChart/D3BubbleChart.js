@@ -1,11 +1,13 @@
 import * as d3 from 'd3';
+import './BubbleChart.css';
 import DataJson from './data.json';
 
-export default class D3ScatterPlot {
+export default class D3BubbleChart {
   constructor(element) {
-    const margin = { top: 10, right: 30, bottom: 80, left: 80 };
-    const width = 700 - margin.left - margin.right;
-    const height = 400 - margin.top - margin.bottom;
+    const vis = this;
+    const margin = { top: 10, right: 50, bottom: 80, left: 100 };
+    const width = 1000 - margin.left - margin.right;
+    const height = 550 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     const svg = d3
@@ -15,6 +17,13 @@ export default class D3ScatterPlot {
       .attr('height', height + margin.top + margin.bottom)
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const tooltip = d3
+      .select(element)
+      .append('div')
+      .attr('class', 'd3-tip')
+      .style('position', 'absolute')
+      .style('visibility', 'hidden');
 
     const x = d3
       .scaleLog()
@@ -102,24 +111,24 @@ export default class D3ScatterPlot {
         .text(c);
     });
 
-    let time = 0;
-    d3.interval(() => {
-      time = time < 214 ? time + 1 : 0;
-      update(DataJson[time]);
-    }, 100);
+    vis.update = update;
 
-    function update(data) {
+    function update(yearIdx, selectedContinents) {
       const circles = svg
         .selectAll('circle')
         .data(
-          data.countries.filter(d => d.income && d.life_exp && d.population),
+          DataJson[yearIdx].countries.filter(
+            d =>
+              d.income &&
+              d.life_exp &&
+              d.population &&
+              (selectedContinents.length === 0 ||
+                selectedContinents.includes(d.continent))
+          ),
           d => d.country
         );
 
-      circles
-        .exit()
-        .attr('class', 'exit')
-        .remove();
+      circles.exit().remove();
 
       circles
         .transition(d3.transition().duration(100))
@@ -130,14 +139,50 @@ export default class D3ScatterPlot {
           return y(d.life_exp);
         })
         .attr('r', d => {
-          return Math.sqrt(area(d.population) / Math.PI);
+          return Math.sqrt(area(d.population) / Math.PI) * 2;
         });
 
-      circles
+      const enterCircles = circles
         .enter()
         .append('circle')
-        .attr('class', 'enter')
         .attr('fill', d => color(d.continent))
+        .attr('stroke', 'black')
+        .attr('stroke-width', '1');
+
+      enterCircles
+        .on('mouseover', function(d) {
+          const mouse = d3.mouse(this);
+          tooltip
+            .style('top', mouse[1] + 'px')
+            .style('left', mouse[0] + 'px')
+            .style('visibility', 'visible')
+            .html(() => {
+              let text =
+                "<strong>Country:</strong> <span style='color:orange'>" +
+                d.country +
+                '</span><br>';
+              text +=
+                "<strong>Continent:</strong> <span style='color:orange;text-transform:capitalize'>" +
+                d.continent +
+                '</span><br>';
+              text +=
+                "<strong>Life Expectancy:</strong> <span style='color:orange'>" +
+                d3.format('.2f')(d.life_exp) +
+                '</span><br>';
+              text +=
+                "<strong>GDP Per Capita:</strong> <span style='color:orange'>" +
+                d3.format('$,.0f')(d.income) +
+                '</span><br>';
+              text +=
+                "<strong>Population:</strong> <span style='color:orange'>" +
+                d3.format(',.0f')(d.population) +
+                '</span><br>';
+              return text;
+            });
+        })
+        .on('mouseout', () => {
+          tooltip.style('visibility', 'hidden');
+        })
         .transition(d3.transition().duration(100))
         .attr('cx', d => {
           return x(d.income);
@@ -146,10 +191,10 @@ export default class D3ScatterPlot {
           return y(d.life_exp);
         })
         .attr('r', d => {
-          return Math.sqrt(area(d.population) / Math.PI);
+          return Math.sqrt(area(d.population) / Math.PI) * 2;
         });
 
-      timeLabel.text(data.year);
+      timeLabel.text(DataJson[yearIdx].year);
     }
   }
 }

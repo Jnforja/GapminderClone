@@ -117,14 +117,16 @@ export default class D3BubbleChart {
       const circles = svg
         .selectAll('circle')
         .data(
-          DataJson[yearIdx].countries.filter(
-            d =>
-              d.income &&
-              d.life_exp &&
-              d.population &&
-              (selectedContinents.length === 0 ||
-                selectedContinents.includes(d.continent))
-          ),
+          DataJson[yearIdx].countries
+            .filter(
+              d =>
+                d.income &&
+                d.life_exp &&
+                d.population &&
+                (selectedContinents.length === 0 ||
+                  selectedContinents.includes(d.continent))
+            )
+            .sort((a, b) => b.population - a.population),
           d => d.country
         );
 
@@ -139,7 +141,7 @@ export default class D3BubbleChart {
           return y(d.life_exp);
         })
         .attr('r', d => {
-          return Math.sqrt(area(d.population) / Math.PI) * 2;
+          return Math.sqrt(area(Math.pow(d.population, 1.05)) / Math.PI);
         });
 
       const enterCircles = circles
@@ -191,7 +193,7 @@ export default class D3BubbleChart {
           return y(d.life_exp);
         })
         .attr('r', d => {
-          return Math.sqrt(area(d.population) / Math.PI) * 2;
+          return Math.sqrt(area(Math.pow(d.population, 1.05)) / Math.PI);
         });
 
       timeLabel.text(DataJson[yearIdx].year);

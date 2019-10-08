@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Slider } from 'react-semantic-ui-range';
 
-import { Button, Icon, Dropdown } from 'semantic-ui-react';
+import { Button, Form, Checkbox, Menu } from 'semantic-ui-react';
 
 import BubbleChartWrapper from './BubbleChart/BubbleChartWrapper';
 
@@ -27,42 +27,74 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <BubbleChartWrapper
-        chartYearIdx={chartYearIdx}
-        selectedContinents={selectedContinents}
-      />
-      <Button
-        icon
-        labelPosition="left"
-        onClick={() => setIsPlaying(!isPlaying)}
-      >
-        <Icon name={isPlaying ? 'pause' : 'play'} />
-        {isPlaying ? 'pause' : 'play'}
-      </Button>
-      <Button icon="repeat" onClick={() => setChartYearIdx(0)} />
-
-      <Slider
-        color="orange"
-        value={chartYearIdx}
-        settings={{
-          start: 0,
-          min: 0,
-          max: 214,
-          step: 1,
-          onChange: value => {
-            setChartYearIdx(value);
-          }
+    <div>
+      <Menu borderless>
+        <Menu.Item>Bubbles</Menu.Item>
+      </Menu>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '4fr 1fr',
+          paddingTop: '1rem',
+          alignItems: 'center'
         }}
-      />
-      <Dropdown
-        placeholder="Continents"
-        fluid
-        multiple
-        selection
-        options={continents}
-        onChange={(event, data) => setSelectedContinents(data.value)}
-      />
+      >
+        <div>
+          <BubbleChartWrapper
+            chartYearIdx={chartYearIdx}
+            selectedContinents={selectedContinents}
+          />
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'min-content 1fr',
+              alignItems: 'center',
+              paddingLeft: '1rem',
+              paddingBottom: '1rem'
+            }}
+          >
+            <Button
+              icon={isPlaying ? 'pause' : 'play'}
+              onClick={() => setIsPlaying(!isPlaying)}
+            />
+            <Slider
+              color="orange"
+              value={chartYearIdx}
+              settings={{
+                start: 0,
+                min: 0,
+                max: 214,
+                step: 1,
+                onChange: value => {
+                  setChartYearIdx(value);
+                }
+              }}
+            />
+          </div>
+        </div>
+        <div>
+          <Form>
+            <Form.Field>Continents</Form.Field>
+            {continents.map(c => (
+              <Form.Field>
+                <Checkbox
+                  label={c.text}
+                  name="checkboxRadioGroup"
+                  value={c.value}
+                  checked={selectedContinents.includes(c.value)}
+                  onChange={(e, d) => {
+                    selectedContinents.includes(d.value)
+                      ? setSelectedContinents(
+                          selectedContinents.filter(v => d.value !== v)
+                        )
+                      : setSelectedContinents([...selectedContinents, d.value]);
+                  }}
+                />
+              </Form.Field>
+            ))}
+          </Form>
+        </div>
+      </div>
     </div>
   );
 }

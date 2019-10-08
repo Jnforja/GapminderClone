@@ -6,15 +6,19 @@ export default class D3BubbleChart {
   constructor(element) {
     const vis = this;
     const margin = { top: 10, right: 50, bottom: 80, left: 100 };
-    const width = 1000 - margin.left - margin.right;
-    const height = 550 - margin.top - margin.bottom;
+    const width = 950 - margin.left - margin.right;
+    const height = 490 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     const svg = d3
       .select(element)
       .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
+      .attr(
+        'viewBox',
+        `0 0 ${width + margin.left + margin.right} ${height +
+          margin.top +
+          margin.bottom}`
+      )
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
@@ -153,7 +157,7 @@ export default class D3BubbleChart {
 
       enterCircles
         .on('mouseover', function(d) {
-          const mouse = d3.mouse(this);
+          const mouse = d3.mouse(element);
           tooltip
             .style('top', mouse[1] + 'px')
             .style('left', mouse[0] + 'px')

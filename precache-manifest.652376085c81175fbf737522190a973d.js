@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b50b34743d14c7eceb1e91afef6a5bca",
+    "revision": "00cae921f483cb1e3da2c81935e5e249",
     "url": "/GapminderClone/index.html"
   },
   {
